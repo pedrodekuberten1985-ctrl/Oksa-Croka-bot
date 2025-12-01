@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 from telegram.ext import Application, CommandHandler
 
@@ -9,6 +10,8 @@ async def help_command(update, context):
 
 def main():
     token = os.getenv("BOT_TOKEN")
+    if not token:
+        raise RuntimeError("❌ BOT_TOKEN не задан")
     app = Application.builder().token(token).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_command))
