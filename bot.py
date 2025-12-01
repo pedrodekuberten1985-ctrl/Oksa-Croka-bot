@@ -1,23 +1,29 @@
 import os
-from telegram.ext import Application, CommandHandler
+from telegram.ext import Application, CommandHandler, ContextTypes
 
-async def start(update, context):
-    await update.message.reply_text("Привет! Я бот для Оксаны ❤️")
+# Получаем токен из переменной окружения
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-async def help_command(update, context):
-    await update.message.reply_text("Напиши /start — и я отвечу!")
+if not BOT_TOKEN:
+    raise RuntimeError("❌ BOT_TOKEN не найден! Убедись, что он добавлен в переменные окружения.")
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Привет! Я OksaCroka_bot ❤️")
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Я всегда рядом для тебя!")
 
 def main():
-    token = os.getenv("BOT_TOKEN")
-    if not token:
-        raise ValueError("❌ Не найден BOT_TOKEN. Добавь его в переменные окружения!")
+    # Создаём приложение
+    application = Application.builder().token(BOT_TOKEN).build()
 
-    app = Application.builder().token(token).build()
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("help", help_command))
+    # Добавляем обработчики команд
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("help", help_command))
 
-    print("✅ Бот запущен и ожидает сообщения...")
-    app.run_polling()
+    # Запускаем бота
+    print("✅ Бот запущен и работает на Render!")
+    application.run_polling()
 
 if __name__ == "__main__":
     main()
