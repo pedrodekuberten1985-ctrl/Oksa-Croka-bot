@@ -5,7 +5,7 @@ async def start(update, context):
     await update.message.reply_text("Привет! Я OksaCroka_bot ❤️")
 
 async def help_command(update, context):
-    await update.message.reply_text("Я всегда рядом для тебя!")
+    await update.message.reply_text("Я создан для тебя!")
 
 def main():
     token = os.getenv("BOT_TOKEN")
