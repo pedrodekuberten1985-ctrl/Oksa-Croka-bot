@@ -5,16 +5,16 @@ import os
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Привет! Я OksaCroka_bot ??")
+    await update.message.reply_text("РџСЂРёРІРµС‚! РЇ OksaCroka_bot ??")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Я всегда рядом для тебя!")
+    await update.message.reply_text("РЇ РІСЃРµРіРґР° СЂСЏРґРѕРј РґР»СЏ С‚РµР±СЏ!")
 
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_command))
-    print("? Бот запущен и работает на Railway!")
+    print("? Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ Рё СЂР°Р±РѕС‚Р°РµС‚ РЅР° Railway!")
     app.run_polling()
 
 if __name__ == '__main__':
