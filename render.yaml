@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: Oksa-Croka-bot
+    env: docker
+    region: oregon
+    plan: free
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
